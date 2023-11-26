@@ -3,7 +3,7 @@ import AdminSidebar from "./components/AdminSidebar";
 
 const AdminLayout = () => {
   return (
-    <div className="container mt-2">
+    <div className="container mt-2" style={{ maxWidth: "100%" }}>
       <div className="row">
         <div className="col-2">
           <AdminSidebar />

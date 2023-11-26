@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "../../styles/styles.css";
 import axiosInstance from "../../../axiosInstance.js";
 import { Field, Form, Formik } from "formik";
@@ -8,9 +8,11 @@ import {
   validatePassword,
   validateUsername,
 } from "../../validation/userFormValidation.js";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
-const RegisterUser = () => {
+const UpdateUser = () => {
+  const { id } = useParams();
+  console.log(id);
   const navigate = useNavigate();
   const [userForm, setUserForm] = useState({
     userName: "",
@@ -19,17 +21,28 @@ const RegisterUser = () => {
     role: "USER",
   });
 
+  const fetchUser = async () => {
+    await axiosInstance.get(`/user/${id}`).then((response) => {
+      console.log(response.data);
+      setUserForm(response.data);
+    });
+  };
+
+  useEffect(() => {
+    fetchUser();
+  }, [id]);
+
   const formikSubmit = async (value, action) => {
     const response = await axiosInstance
-      .post("/user", value)
+      .put(`/user/${id}`, value)
       .then(() => navigate("/admin/user"))
       .catch((err) => err);
-    console.log(response);
+    console.log("response", response);
   };
   return (
     <div className="name">
       <div>
-        <h1>User Registration</h1>
+        <h1>Update User</h1>
         <br></br>
         <Formik initialValues={userForm} onSubmit={formikSubmit}>
           {({ errors, touched }) => (
@@ -72,7 +85,12 @@ const RegisterUser = () => {
               </div>
               <div>
                 <Label>Roles: </Label>
-                <Field className="form-control" as="select" name="role">
+                <Field
+                  className="form-control"
+                  as="select"
+                  name="role"
+                  value={userForm.role}
+                >
                   <option value="USER">USER</option>
                   <option value="INTERN">INTERN</option>
                   <option value="ADMIN">ADMIN</option>
@@ -88,4 +106,4 @@ const RegisterUser = () => {
     </div>
   );
 };
-export default RegisterUser;
+export default UpdateUser;
