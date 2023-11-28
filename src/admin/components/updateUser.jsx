@@ -15,7 +15,7 @@ const UpdateUser = () => {
   console.log(id);
   const navigate = useNavigate();
   const [userForm, setUserForm] = useState({
-    userName: "",
+    username: "",
     email: "",
     password: "",
     role: "USER",
@@ -23,8 +23,7 @@ const UpdateUser = () => {
 
   const fetchUser = async () => {
     await axiosInstance.get(`/user/${id}`).then((response) => {
-      console.log(response.data);
-      setUserForm(response.data);
+      setUserForm((prev) => ({ ...prev, ...response?.data?.response }));
     });
   };
 
@@ -44,14 +43,18 @@ const UpdateUser = () => {
       <div>
         <h1>Update User</h1>
         <br></br>
-        <Formik initialValues={userForm} onSubmit={formikSubmit}>
+        <Formik
+          initialValues={userForm}
+          onSubmit={formikSubmit}
+          enableReinitialize
+        >
           {({ errors, touched }) => (
             <Form>
               <div className="form-group">
                 <Label>UserName</Label>
                 <Field
                   className="form-control"
-                  name="userName"
+                  name="username"
                   type="text"
                   validate={validateUsername}
                 />

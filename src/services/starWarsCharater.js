@@ -21,5 +21,5 @@ export const getBooks = async () => {
   return axiosInstance.get(`/book`);
 };
 export const getUsers = async () => {
-  return axiosInstance.get(`/user`);
+  return axiosInstance.get("/auth/user");
 };

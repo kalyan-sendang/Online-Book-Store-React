@@ -33,11 +33,20 @@ const LoginUser = () => {
   }
 
   const formikSubmit = async (value, action) => {
-    const response = await axiosInstance
-      .post("/user", value)
-      .then(() => navigate("/admin/user"))
-      .catch((err) => err);
-    console.log(response);
+    try {
+      const { status, data } = await axiosInstance.post("/user/login", value);
+      const token = data?.token;
+      // Save the token in local storage
+      localStorage.setItem("token", "Bearer " + token);
+      if (status == "200" && localStorage.getItem("token")) {
+        const response = await axiosInstance.get(`/userprofile`);
+        localStorage.setItem("userprofile", JSON.stringify(response?.data));
+        console.log(response.data);
+        response?.data?.role == "ADMIN" ? navigate("/admin") : navigate("/");
+      }
+    } catch (error) {
+      console.log("Login Error ", error);
+    }
   };
   return (
     <div className="name" style={{ paddingBottom: "200px" }}>

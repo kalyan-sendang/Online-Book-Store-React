@@ -1,5 +1,11 @@
+import Slider from "../components/Carousel";
+
 const HomePage = () => {
-  return <div className="text-primary">HomePage</div>;
+  return (
+    <>
+      <Slider />
+    </>
+  );
 };
 
 export default HomePage;

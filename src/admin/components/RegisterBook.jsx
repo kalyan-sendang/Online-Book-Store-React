@@ -23,14 +23,12 @@ const RegisterBook = () => {
   });
 
   const formikSubmit = async (value, action) => {
-    console.log(value);
-    console.log(action);
-
-    const response = await axiosInstance
-      .post("/book", value)
-      .then(() => navigate("/admin/book"))
-      .catch((err) => err);
-    console.log(response);
+    await axiosInstance.post("/book", value).then(() =>
+      console
+        .log(value)
+        //  navigate("/admin/book"))
+        .catch((err) => err)
+    );
   };
   return (
     <div className="name">

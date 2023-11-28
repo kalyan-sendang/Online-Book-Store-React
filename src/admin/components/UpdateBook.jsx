@@ -24,8 +24,7 @@ const UpdateBook = () => {
   });
   const fetchBook = async () => {
     await axiosInstance.get(`/book/${id}`).then((response) => {
-      setBookForm(response.data);
-      // setBookForm(data)
+      setBookForm(response?.data?.response);
     });
   };
 
