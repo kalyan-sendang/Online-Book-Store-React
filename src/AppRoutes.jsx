@@ -14,6 +14,7 @@ import Register from "./site/Register";
 import UpdateBook from "./admin/components/UpdateBook";
 import UpdateUser from "./admin/components/updateUser";
 import BookPage from "./site/components/BookPage";
+import Cart from "./site/cart/Cart";
 
 const AppRoutes = () => {
   return (
@@ -24,6 +25,7 @@ const AppRoutes = () => {
           <Route path="book/:id" element={<BookPage />} />
           <Route path="login" element={<Login />} />
           <Route path="register" element={<RegisterUser />} />
+          <Route path="cart" element={<Cart />} />
         </Route>
         <Route
           path="/admin"

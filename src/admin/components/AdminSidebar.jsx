@@ -128,22 +128,12 @@ const AdminSidebar = () => {
           >
             <ul className="btn-toggle-nav list-unstyled fw-normal pb-1 small">
               <li>
-                <Link href="#" className="link-light rounded">
-                  New...
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="link-light rounded">
+                <Link to="#" className="link-light rounded">
                   Profile
                 </Link>
               </li>
               <li>
-                <Link href="#" className="link-light rounded">
-                  Settings
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="link-light rounded">
+                <Link to="/" className="link-light rounded">
                   Sign out
                 </Link>
               </li>
