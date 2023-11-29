@@ -13,6 +13,7 @@ import UserDashboard from "./admin/Dashboard/UserDashboard";
 import Register from "./site/Register";
 import UpdateBook from "./admin/components/UpdateBook";
 import UpdateUser from "./admin/components/updateUser";
+import BookPage from "./site/components/BookPage";
 
 const AppRoutes = () => {
   return (
@@ -20,6 +21,7 @@ const AppRoutes = () => {
       <Routes>
         <Route path="/" element={<SiteLayout />}>
           <Route index element={<HomePage />} />
+          <Route path="book/:id" element={<BookPage />} />
           <Route path="login" element={<Login />} />
           <Route path="register" element={<RegisterUser />} />
         </Route>

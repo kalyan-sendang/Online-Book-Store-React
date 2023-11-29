@@ -20,6 +20,10 @@ import axiosInstance from "../../axiosInstance";
 export const getBooks = async () => {
   return axiosInstance.get(`/book`);
 };
+
+export const getBooksById = async (id) => {
+  return axiosInstance.get(`/book/${id}`);
+};
 export const getUsers = async () => {
   return axiosInstance.get("/auth/user");
 };
