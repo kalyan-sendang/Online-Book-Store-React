@@ -9,11 +9,8 @@ import {
   validateGenre,
   validatePrice,
 } from "../../validation/bookFormValidation.js";
-import { useNavigate } from "react-router-dom";
 
 const RegisterBook = () => {
-  const navigate = useNavigate();
-
   const [bookForm, setBookForm] = useState({
     title: "",
     author: "",

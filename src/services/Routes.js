@@ -29,28 +29,29 @@ export const getUsers = async () => {
   return axiosInstance.get("/auth/user");
 };
 
-export const addToCart = async (bookId, qty) => {
-  await axiosInstance.post(`/cart/${bookId}`, qty).then((res) => {
-    const response = res?.data
-    console.log(response)
-    if (response?.statusCode === 201) {
-      getCart();
+export const addToCart = async (bookId) => {
+  const response = await axiosInstance.post(`/cart`, bookId).then(
+    (res) => {
+      if (res?.data.statusCode === 200) {
+        getCart();
+      }
+      return res?.data
     }
-  }
-  ).catch(() => "error");
-
-
+  ).catch(()=> "error");
+  return response
 }
 
 export const updateCart = async (cartId, qty) => {
-  await axiosInstance.put(`/cart/${cartId}`, qty).then((res) => {
-    const response = res?.data
-    if (response?.statusCode === 201) {
+  const response = await axiosInstance.put(`/cart/${cartId}`, qty).then(
+    (res) => {
+    
+    if (res?.statusCode === 201) {
       getCart();
     }
+    return res?.data;
   }
   ).catch(() => "error");
-
+  return response;
 }
 
 
