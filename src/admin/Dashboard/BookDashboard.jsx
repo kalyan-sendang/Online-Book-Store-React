@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { useMemo } from "react";
 import DataTable from "../components/DataTable";
-import { getBooks } from "../../services/starWarsCharater";
+import { getBooks } from "../../services/Routes";
 import axiosInstance from "../../../axiosInstance";
 import { Link } from "react-router-dom";
 

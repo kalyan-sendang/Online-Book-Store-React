@@ -1,20 +1,25 @@
 import axios from "axios"
+import Cookies from "js-cookie";
 
 const axiosInstance = axios.create({
   baseURL: import.meta.env.REACT_APP_API_URL ?? "http://localhost:8080/api",
   headers: {
     "Content-Type": "application/json",
-     Authorization: localStorage.getItem("token") ?? ""
   }
 });
 
-// const updateAuthorizationHeader = () => {
-//   const token = localStorage.getItem("token") ?? "";
-//   axiosInstance.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-// };
-
-// // Call the function to set the header initially
-// updateAuthorizationHeader();
-
+// Add a request interceptor to update the Authorization header with the latest token
+axiosInstance.interceptors.request.use(
+  (config) => {
+    const token = Cookies.get('auth') ?? "";
+    if (token) {
+      config.headers.Authorization = token;
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
 
 export default axiosInstance;

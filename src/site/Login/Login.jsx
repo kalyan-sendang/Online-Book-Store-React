@@ -4,6 +4,7 @@ import { Field, Form, Formik } from "formik";
 import { Label } from "reactstrap";
 import axiosInstance from "../../../axiosInstance";
 import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 
 const LoginUser = () => {
   const navigate = useNavigate();
@@ -35,12 +36,18 @@ const LoginUser = () => {
   const formikSubmit = async (value, action) => {
     try {
       const { status, data } = await axiosInstance.post("/user/login", value);
+      console.log("data", data)
+      console.log(status)
       const token = data?.token;
+      console.log(token)
       // Save the token in local storage
-      localStorage.setItem("token", "Bearer " + token);
+      // localStorage.setItem("token", "Bearer " + token);
       // axiosInstance.defaults.headers.common["Authorization"] =
       //   localStorage.getItem("token");
-      if (status === 200 && localStorage.getItem("token")) {
+
+      // Set the token in a cookie with the name 'Authorization'
+      Cookies.set('auth', "Bearer " + token);
+      if (status === 200 && Cookies.get('auth')) {
         const response = await axiosInstance.get(`/userprofile`);
         localStorage.setItem("userprofile", JSON.stringify(response?.data));
         console.log(response.data);
