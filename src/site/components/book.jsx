@@ -2,7 +2,7 @@
 import { Button, Card, Col, ListGroup, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { addToCart } from "../../services/Routes";
-import { useEffect, useState } from "react";
+import Rating from "./Rating";
 
 function Book({ book }) {
   const handleClick = async () => {
@@ -28,8 +28,7 @@ function Book({ book }) {
         </Link>
         <Card.Text as="div">
           <div className="my-3">
-            {/* <Rating value={book.rating} text={`${book.numReviews}reviews`} color={`#f8e825`} /> */}
-            <p style={{ color: "#696969" }}>4.5 from 10 reviews</p>
+            <Rating value={5} text={3} color={`#f8e825`} />
           </div>
         </Card.Text>
         <Card.Text as="h3">Rs.{book.price}</Card.Text>
@@ -40,10 +39,7 @@ function Book({ book }) {
           <Col>
             {
               <ListGroup.Item>
-                <Button
-                  onClick={handleClick}
-                  className={"btn w-100"}
-                >
+                <Button onClick={handleClick} className="btn w-100">
                   Add to Cart
                 </Button>
               </ListGroup.Item>

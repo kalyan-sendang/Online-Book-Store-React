@@ -19,13 +19,18 @@ function SingleCart({ item, updateHandler, deleteHandler }) {
           {/* <Image src={item.image} alt={item.name} fluid rounded /> */}
           <Image
             src="/src/assets/book1.avif"
-            alt={item.book.title}
+            alt={item?.book?.title}
             fluid
             rounded
           />
         </Col>
         <Col md={3}>
-          <Link to={`/book/${item?.book?.bookId}`} style={{ textDecoration: "none" }}>{item?.book?.title}</Link>
+          <Link
+            to={`/book/${item?.book?.bookId}`}
+            style={{ textDecoration: "none" }}
+          >
+            {item?.book?.title}
+          </Link>
         </Col>
         <Col md={2}>Rs.{item?.book?.price * quantity}</Col>
         <Col>
@@ -48,11 +53,19 @@ function SingleCart({ item, updateHandler, deleteHandler }) {
             variant="warning"
             onClick={() => updateHandler(item?.cartId, quantity)}
           >
-            <i className="fa-solid fa-pen fa-beat-fade" style={{ color: "#030c1c" }}></i>
+            <i
+              className="fa-solid fa-pen fa-beat-fade"
+              style={{ color: "#030c1c" }}
+            ></i>
           </Button>
         </Col>
         <Col>
-          <Button style={{ marginRight: "30px" }} type="button" variant="danger" onClick={() => deleteHandler(item?.cartId)}>
+          <Button
+            style={{ marginRight: "30px" }}
+            type="button"
+            variant="danger"
+            onClick={() => deleteHandler(item?.cartId)}
+          >
             <i className="fa-solid fa-trash-can fa-beat-fade"></i>
           </Button>
         </Col>
