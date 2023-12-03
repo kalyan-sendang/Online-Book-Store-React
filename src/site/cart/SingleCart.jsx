@@ -11,10 +11,11 @@ function SingleCart({ item, updateHandler, deleteHandler }) {
       setQuantity(item?.qty);
     }
   }, [item]);
+
   return (
     <ListGroup.Item>
       <Row>
-        <Col md={2}>
+        <Col md={3}>
           {/* <Image src={item.image} alt={item.name} fluid rounded /> */}
           <Image
             src="/src/assets/book1.avif"
@@ -24,7 +25,7 @@ function SingleCart({ item, updateHandler, deleteHandler }) {
           />
         </Col>
         <Col md={3}>
-          <Link to={`/book/${item?.book?.bookId}`}>{item?.book?.title}</Link>
+          <Link to={`/book/${item?.book?.bookId}`} style={{ textDecoration: "none" }}>{item?.book?.title}</Link>
         </Col>
         <Col md={2}>Rs.{item?.book?.price * quantity}</Col>
         <Col>
@@ -42,16 +43,17 @@ function SingleCart({ item, updateHandler, deleteHandler }) {
         </Col>
         <Col>
           <Button
+            style={{ marginLeft: "30px" }}
             type="button"
             variant="warning"
             onClick={() => updateHandler(item?.cartId, quantity)}
           >
-            <i className="fas fa-trash">Update</i>
+            <i className="fa-solid fa-pen fa-beat-fade" style={{ color: "#030c1c" }}></i>
           </Button>
         </Col>
         <Col>
-          <Button type="button" variant="danger" onClick={deleteHandler}>
-            <i className="fas fa-trash">Delete</i>
+          <Button style={{ marginRight: "30px" }} type="button" variant="danger" onClick={() => deleteHandler(item?.cartId)}>
+            <i className="fa-solid fa-trash-can fa-beat-fade"></i>
           </Button>
         </Col>
       </Row>

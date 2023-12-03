@@ -32,36 +32,36 @@ export const getUsers = async () => {
 export const addToCart = async (bookId) => {
   const response = await axiosInstance.post(`/cart`, bookId).then(
     (res) => {
-      if (res?.data.statusCode === 200) {
+      if (res?.data.success === true) {
         getCart();
       }
       return res?.data
     }
-  ).catch(()=> "error");
+  ).catch(() => "error");
   return response
 }
 
 export const updateCart = async (cartId, qty) => {
   const response = await axiosInstance.put(`/cart/${cartId}`, qty).then(
     (res) => {
-    
-    if (res?.statusCode === 201) {
-      getCart();
+
+      if (res?.data.success === true) {
+        getCart();
+      }
+      return res?.data;
     }
-    return res?.data;
-  }
   ).catch(() => "error");
   return response;
 }
 
 
 export const deleteCart = async (cartId) => {
-  await axiosInstance.delete(`/user/cart/${cartId}`).then((res) => {
-    const response = res?.data
-    if (response?.statusCode === 200) {
+  const response = await axiosInstance.delete(`/cart/${cartId}`).then((res) => {
+    if (res?.data.success === true) {
       getCart();
     }
+    return res?.data
   }
   ).catch(() => null);
-
+  return response;
 }

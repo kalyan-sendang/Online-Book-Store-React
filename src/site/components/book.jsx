@@ -2,18 +2,17 @@
 import { Button, Card, Col, ListGroup, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { addToCart } from "../../services/Routes";
+import { useEffect, useState } from "react";
 
 function Book({ book }) {
   const handleClick = async () => {
     const response = await addToCart(book.bookId);
-    console.log("response", response);
-    window.alert("Successfully book added to Cart.");
+    if (response?.success === true) {
+      window.alert("Successfully book added to Cart.");
+    } else {
+      window.alert("Book is already added to Cart.");
+    }
   };
-
-  const carts = JSON.parse(localStorage.getItem("cart")) || [];
-  const bookExistAlreadyExistInCart = carts.find(
-    (cart) => cart?.book?.bookId === book?.bookId
-  );
 
   return (
     <Card className="my-3 p-3 rounded ">
@@ -39,23 +38,16 @@ function Book({ book }) {
             <Card.Text as="p">Genre: {book.genre}</Card.Text>
           </Col>
           <Col>
-            {!bookExistAlreadyExistInCart ? (
+            {
               <ListGroup.Item>
                 <Button
                   onClick={handleClick}
-                  className="btn w-100"
-                  type="button"
+                  className={"btn w-100"}
                 >
                   Add to Cart
                 </Button>
               </ListGroup.Item>
-            ) : (
-              <ListGroup.Item>
-                <Button disabled className="btn w-100" type="button">
-                  In Cart
-                </Button>
-              </ListGroup.Item>
-            )}
+            }
           </Col>
         </Row>
       </Card.Body>

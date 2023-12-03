@@ -15,8 +15,10 @@ function Navbar() {
         >
           <ul className="navbar-nav mr-auto">
             <li className="nav-item active">
-              <a className="nav-link" href="/cart">
-                Cart<span className="sr-only"></span>
+              <a className="nav-link" href="/cart" style={{ width: "70px" }}>
+                <i className="fa-solid fa-cart-shopping">  </i>
+                Cart
+                <span className="sr-only">Cart</span>
               </a>
             </li>
 
