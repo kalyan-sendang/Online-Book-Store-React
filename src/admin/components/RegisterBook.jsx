@@ -9,8 +9,10 @@ import {
   validateGenre,
   validatePrice,
 } from "../../validation/bookFormValidation.js";
+import { useNavigate } from "react-router-dom";
 
 const RegisterBook = () => {
+  const navigate = useNavigate();
   const [bookForm, setBookForm] = useState({
     title: "",
     author: "",
@@ -20,12 +22,10 @@ const RegisterBook = () => {
   });
 
   const formikSubmit = async (value, action) => {
-    await axiosInstance.post("/book", value).then(() =>
-      console
-        .log(value)
-        //  navigate("/admin/book"))
-        .catch((err) => err)
-    );
+    await axiosInstance
+      .post("/auth/book", value)
+      .then(() => navigate("/admin/book"))
+      .catch((err) => err);
   };
   return (
     <div className="name">
@@ -84,11 +84,13 @@ const RegisterBook = () => {
                 )}
               </div>
               <div>
-                <Label>Available</Label>
-                <Field className="form-control" as="select" name="available">
-                  <option value={true}>true</option>
-                  <option value={false}>false</option>
-                </Field>
+                <Label>Quantity</Label>
+                <Field
+                  className="form-control"
+                  name="qty"
+                  type="number"
+                  // validate={validatePrice}
+                />
               </div>
 
               <button type="submit" className="btn btn-primary">

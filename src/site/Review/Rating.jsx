@@ -1,4 +1,4 @@
-function Rating({ value, text, color }) {
+function Rating({ value, text, color = "#f8e825" }) {
   return (
     <div className="rating">
       <span>

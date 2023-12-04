@@ -34,7 +34,7 @@ const UpdateBook = () => {
 
   const formikSubmit = async (value, action) => {
     const response = await axiosInstance
-      .put(`/book/${id}`, value)
+      .put(`/auth/book/${id}`, value)
       .then(() => {
         navigate("/admin/book");
       })
@@ -102,11 +102,16 @@ const UpdateBook = () => {
                 )}
               </div>
               <div>
-                <Label>Available</Label>
-                <Field className="form-control" as="select" name="available">
-                  <option value={true}>true</option>
-                  <option value={false}>false</option>
-                </Field>
+                <Label>Quantity</Label>
+                <Field
+                  className="form-control"
+                  name="qty"
+                  type="number"
+                  // validate={validatePrice}
+                />
+                {/* {errors.price && touched.price && (
+                  <div style={{ color: "red" }}>{errors.price}</div>
+                )} */}
               </div>
 
               <button type="submit" className="btn btn-primary">

@@ -1,6 +1,14 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Navbar() {
+  const navigate = useNavigate();
+  const userProfile = JSON.parse(localStorage.getItem("userprofile"));
+  const logoutHandler = () => {
+    localStorage.removeItem("userprofile");
+    localStorage.removeItem("cart");
+    navigate("/");
+  };
+
   return (
     <div className="container">
       <nav className="navbar navbar-expand-lg">
@@ -16,7 +24,7 @@ function Navbar() {
           <ul className="navbar-nav mr-auto">
             <li className="nav-item active">
               <a className="nav-link" href="/cart" style={{ width: "70px" }}>
-                <i className="fa-solid fa-cart-shopping">  </i>
+                <i className="fa-solid fa-cart-shopping"> </i>
                 Cart
                 <span className="sr-only">Cart</span>
               </a>
@@ -47,18 +55,47 @@ function Navbar() {
               </ul>
             </li>
           </ul>
+
           <div className="container" style={{ display: "flex" }}>
             <ul className="navbar-nav mr-auto">
-              <li className="nav-item active">
+              {/* <li className="nav-item active">
                 <a className="nav-link" href="register">
+              
                   SignUp<span className="sr-only"></span>
                 </a>
-              </li>
-              <li className="nav-item active">
-                <a className="nav-link" href="login">
-                  SignIn<span className="sr-only"></span>
-                </a>
-              </li>
+              </li> */}
+              {userProfile ? (
+                <li className="nav-item dropdown">
+                  <a
+                    className="nav-link dropdown-toggle"
+                    href="#"
+                    id="navbarDropdown"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    <i className="fa-solid fa-user"></i>
+                    {userProfile.userName}
+                  </a>
+                  <ul
+                    className="dropdown-menu"
+                    aria-labelledby="navbarDropdown"
+                  >
+                    <li>
+                      <Link className="dropdown-item" onClick={logoutHandler}>
+                        logout
+                      </Link>
+                    </li>
+                  </ul>
+                </li>
+              ) : (
+                <li className="nav-item active">
+                  <a className="nav-link" href="login">
+                    <i className="fa-solid fa-user"></i>
+                    SignIn<span className="sr-only"></span>
+                  </a>
+                </li>
+              )}
             </ul>
           </div>
 

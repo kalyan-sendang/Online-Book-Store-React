@@ -14,8 +14,8 @@ const UserDashboard = () => {
   const columns = useMemo(() => {
     return [
       {
-        accessorKey: "id",
-        header: "id",
+        accessorKey: "userId",
+        header: "userId",
         cell: ({ getValue }) => {
           return <div>{getValue()}</div>;
         },

@@ -18,8 +18,8 @@ import { getCart } from "./getCart";
 //   return axiosInstance.put(`/people/${id}`, data);
 // };
 
-export const getBooks = async () => {
-  return axiosInstance.get(`/book`);
+export const getBooks = async (pageNo) => {
+  return axiosInstance.get(`/book?page=${pageNo}`);
 };
 
 export const getBooksById = async (bookId) => {

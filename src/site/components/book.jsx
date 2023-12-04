@@ -2,15 +2,21 @@
 import { Button, Card, Col, ListGroup, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { addToCart } from "../../services/Routes";
-import Rating from "./Rating";
+import Rating from "../Review/Rating";
 
 function Book({ book }) {
+  const userProfile = localStorage.getItem("userprofile");
+  console.log("rat", book?.overallRating);
   const handleClick = async () => {
-    const response = await addToCart(book.bookId);
-    if (response?.success === true) {
-      window.alert("Successfully book added to Cart.");
+    if (userProfile) {
+      const response = await addToCart(book.bookId);
+      if (response?.success === true) {
+        window.alert("Successfully book added to Cart.");
+      } else {
+        window.alert("Book is already added to Cart.");
+      }
     } else {
-      window.alert("Book is already added to Cart.");
+      window.alert("Sign in to add Book");
     }
   };
 
@@ -28,7 +34,11 @@ function Book({ book }) {
         </Link>
         <Card.Text as="div">
           <div className="my-3">
-            <Rating value={5} text={3} color={`#f8e825`} />
+            <Rating
+              value={book?.overallRating}
+              text={book?.numberOfReviews}
+              color={`#f8e825`}
+            />
           </div>
         </Card.Text>
         <Card.Text as="h3">Rs.{book.price}</Card.Text>
