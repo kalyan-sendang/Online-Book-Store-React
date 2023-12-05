@@ -16,6 +16,9 @@ import UpdateUser from "./admin/components/updateUser";
 import BookPage from "./site/components/BookPage";
 import Cart from "./site/cart/Cart";
 import OrderDashboard from "./admin/Dashboard/OrderDashboard";
+import { ShippingPage } from "./site/cart/ShippingPage";
+import OrderPage from "./site/cart/OrderPage";
+import PlaceOrder from "./site/cart/PlaceOrder";
 
 const AppRoutes = () => {
   return (
@@ -27,6 +30,9 @@ const AppRoutes = () => {
           <Route path="login" element={<Login />} />
           <Route path="register" element={<RegisterUser />} />
           <Route path="cart" element={<Cart />} />
+          <Route path="shipping" element={<ShippingPage />} />
+          <Route path="order" element={<OrderPage />} />
+          <Route path="placeorder" element={<PlaceOrder />} />
         </Route>
         <Route
           path="/admin"

@@ -1,16 +1,22 @@
 import { useState } from "react";
+import axiosInstance from "../../../axiosInstance";
 
 function OrderStatus({ order }) {
   const [status, setStatus] = useState("");
 
   //api
+  const handleUpdate = async (orderId, status) => {
+    console.log(orderId, status);
+    const response = await axiosInstance.put(`/order/${orderId}`, status);
+    console.log(response);
+  };
 
   return (
     <tr>
       <th>{order?.orderId}</th>
       <td>{order?.book?.bookId}</td>
       <td>{order?.user?.userId}</td>
-      <td>{order?.user?.userName}</td>
+      <td>{order?.book?.title}</td>
       <td>{order?.date}</td>
       <td>
         {
@@ -24,6 +30,7 @@ function OrderStatus({ order }) {
           </select>
         }
       </td>
+      <td>{order?.shippingAddress}</td>
       <td>{order?.shippedTime}</td>
       <td>{order?.price}</td>
       <td>{order?.qty}</td>
@@ -33,6 +40,7 @@ function OrderStatus({ order }) {
           onClick={() => {
             // setStatus(orderData?.status);
             // handleUpdate(order?.orderId, orderData?.status);
+            handleUpdate(order?.orderId, status)
           }}
           type="button"
           className="btn btn-success"

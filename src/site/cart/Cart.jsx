@@ -14,7 +14,7 @@ function Cart() {
   const [totalQuantity, setTotalQuantity] = useState(0);
 
   const checkoutHandler = () => {
-    navigate("/");
+    navigate("/shipping");
   };
 
   const updateHandler = async (cartId, quantity) => {

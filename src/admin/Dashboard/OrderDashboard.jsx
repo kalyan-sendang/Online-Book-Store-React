@@ -16,7 +16,7 @@ const OrderDashboard = () => {
   console.log(orders);
 
   const [orderData, setOrderData] = useState("");
-  const [status, setStatus] = useState("");
+
 
   useEffect(() => {
     if (orders) {
@@ -24,11 +24,6 @@ const OrderDashboard = () => {
     }
   }, [orders]);
 
-  const handleUpdate = async (orderId, status) => {
-    console.log(orderId, status);
-    const response = await axiosInstance.put(`/order/${orderId}`, status);
-    console.log(response);
-  };
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -45,6 +40,7 @@ const OrderDashboard = () => {
             <th>BookName</th>
             <th>Ordered At</th>
             <th>status</th>
+            <th>shippingAddress</th>
             <th>shippedTime</th>
             <th>price</th>
             <th>quantity</th>

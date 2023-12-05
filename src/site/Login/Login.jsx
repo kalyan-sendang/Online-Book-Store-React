@@ -6,6 +6,7 @@ import axiosInstance from "../../../axiosInstance";
 import { Link, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import { Col, Row } from "react-bootstrap";
+import { getCart } from "../../services/getCart";
 
 const LoginUser = () => {
   const navigate = useNavigate();
@@ -48,6 +49,7 @@ const LoginUser = () => {
       if (status === 200 && Cookies.get("auth")) {
         const response = await axiosInstance.get(`/userprofile`);
         localStorage.setItem("userprofile", JSON.stringify(response?.data));
+        getCart();
         response?.data?.role === "ADMIN" ? navigate("/admin") : navigate("/");
       }
     } catch (error) {
