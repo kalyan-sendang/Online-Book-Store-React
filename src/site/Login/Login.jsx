@@ -37,10 +37,7 @@ const LoginUser = () => {
   const formikSubmit = async (value, action) => {
     try {
       const { status, data } = await axiosInstance.post("/user/login", value);
-      console.log("data", data);
-      console.log(status);
       const token = data?.token;
-      console.log(token);
       // Save the token in local storage
       // localStorage.setItem("token", "Bearer " + token);
       // axiosInstance.defaults.headers.common["Authorization"] =
@@ -51,11 +48,10 @@ const LoginUser = () => {
       if (status === 200 && Cookies.get("auth")) {
         const response = await axiosInstance.get(`/userprofile`);
         localStorage.setItem("userprofile", JSON.stringify(response?.data));
-        console.log(response.data);
         response?.data?.role === "ADMIN" ? navigate("/admin") : navigate("/");
       }
     } catch (error) {
-      console.log("Login Error ", error);
+      console.error("Login Error ", error);
     }
   };
   return (

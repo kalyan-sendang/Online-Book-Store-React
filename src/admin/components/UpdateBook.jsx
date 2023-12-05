@@ -13,7 +13,6 @@ import { useNavigate, useParams } from "react-router-dom";
 
 const UpdateBook = () => {
   const { id } = useParams();
-  console.log(id);
   const navigate = useNavigate();
   const [bookForm, setBookForm] = useState({
     title: "",
@@ -39,7 +38,6 @@ const UpdateBook = () => {
         navigate("/admin/book");
       })
       .catch((err) => err);
-    console.log(response);
   };
   return (
     <div className="name">

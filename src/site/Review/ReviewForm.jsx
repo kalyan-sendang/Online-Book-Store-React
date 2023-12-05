@@ -14,7 +14,6 @@ const ReviewForm = ({ bookId, prevReview, setReviews, setEditModel }) => {
     });
 
     const response = JSON.parse(JSON.stringify(res));
-    console.log(response);
 
     if (response?.data?.success) {
       window.alert("Added!!!");
@@ -27,7 +26,6 @@ const ReviewForm = ({ bookId, prevReview, setReviews, setEditModel }) => {
 
   useEffect(() => {
     if (prevReview) {
-      console.log(prevReview);
       setComment(prevReview?.comment);
       setRating(prevReview?.rating);
     }

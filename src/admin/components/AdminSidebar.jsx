@@ -89,23 +89,8 @@ const AdminSidebar = () => {
           >
             <ul className="btn-toggle-nav list-unstyled fw-normal pb-1 small">
               <li>
-                <Link href="#" className="link-light rounded">
-                  New
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="link-light rounded">
-                  Processed
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="link-light rounded">
-                  Shipped
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="link-light rounded">
-                  Returned
+                <Link to="/admin/orders" className="link-light rounded">
+                  List Orders
                 </Link>
               </li>
             </ul>

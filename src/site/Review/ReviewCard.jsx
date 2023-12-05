@@ -16,14 +16,6 @@ const ReviewCard = ({ review }) => {
       </div>
       <div className="col-sm-9">
         <div className="review-block-rate">
-          {/* {[1, 2, 3, 4, 5].map((item) => (
-            <span
-              key={item}
-              className={`fas fa-star ${
-                review?.rating >= item ? "star-active" : "star-inactive"
-              } mx-1`}
-            ></span>
-          ))} */}
           <Rating value={review?.rating} text={review?.rating} />
         </div>
         <div className="review-block-date">

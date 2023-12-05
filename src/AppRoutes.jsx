@@ -15,6 +15,7 @@ import UpdateBook from "./admin/components/UpdateBook";
 import UpdateUser from "./admin/components/updateUser";
 import BookPage from "./site/components/BookPage";
 import Cart from "./site/cart/Cart";
+import OrderDashboard from "./admin/Dashboard/OrderDashboard";
 
 const AppRoutes = () => {
   return (
@@ -42,6 +43,7 @@ const AppRoutes = () => {
           <Route path="user" element={<UserDashboard />}></Route>
           <Route path="updateuser/:id" element={<UpdateUser />}></Route>
           <Route path="adduser" element={<Register />}></Route>
+          <Route path="orders" element={<OrderDashboard />}></Route>
         </Route>
         <Route path="*" element={<PageNotFound />} />
       </Routes>

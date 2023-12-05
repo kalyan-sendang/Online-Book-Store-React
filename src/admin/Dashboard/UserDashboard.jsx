@@ -66,9 +66,6 @@ const UserDashboard = () => {
     axiosInstance.delete(`/user/${id}`).then(() => {
       refetch();
     });
-    console.log(data?.data?.response);
-    // console.log(data.filter((book) => book?.id != id));
-    console.log("Delete clicked for ID:", id);
   };
 
   if (isLoading) {

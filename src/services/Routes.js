@@ -1,3 +1,4 @@
+import axios from "axios";
 import axiosInstance from "../../axiosInstance";
 import { getCart } from "./getCart";
 
@@ -64,4 +65,9 @@ export const deleteCart = async (cartId) => {
   }
   ).catch(() => null);
   return response;
+}
+
+export const getOrders = async () =>{
+  const response = await axiosInstance.get("/order");
+  return response; 
 }

@@ -22,14 +22,15 @@ function Navbar() {
           style={{ justifyContent: "space-between" }}
         >
           <ul className="navbar-nav mr-auto">
-            <li className="nav-item active">
-              <a className="nav-link" href="/cart" style={{ width: "70px" }}>
-                <i className="fa-solid fa-cart-shopping"> </i>
-                Cart
-                <span className="sr-only">Cart</span>
-              </a>
-            </li>
-
+            {userProfile && (
+              <li className="nav-item active">
+                <a className="nav-link" href="/cart" style={{ width: "70px" }}>
+                  <i className="fa-solid fa-cart-shopping"> </i>
+                  Cart
+                  <span className="sr-only">Cart</span>
+                </a>
+              </li>
+            )}
             <li className="nav-item dropdown">
               <a
                 className="nav-link dropdown-toggle"

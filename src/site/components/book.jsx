@@ -6,7 +6,6 @@ import Rating from "../Review/Rating";
 
 function Book({ book }) {
   const userProfile = localStorage.getItem("userprofile");
-  console.log("rat", book?.overallRating);
   const handleClick = async () => {
     if (userProfile) {
       const response = await addToCart(book.bookId);

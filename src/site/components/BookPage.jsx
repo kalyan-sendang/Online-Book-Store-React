@@ -24,7 +24,7 @@ const BookPage = () => {
   const handleClick = async () => {
     if (userProfile) {
       const response = await addToCart(book?.bookId);
-      console.log(response);
+
       if (response?.success === true) {
         window.alert("Successfully book added to Cart.");
       } else {

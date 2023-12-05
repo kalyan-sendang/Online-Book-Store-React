@@ -12,7 +12,6 @@ import { useNavigate, useParams } from "react-router-dom";
 
 const UpdateUser = () => {
   const { id } = useParams();
-  console.log(id);
   const navigate = useNavigate();
   const [userForm, setUserForm] = useState({
     username: "",
@@ -36,7 +35,6 @@ const UpdateUser = () => {
       .put(`/user/${id}`, value)
       .then(() => navigate("/admin/user"))
       .catch((err) => err);
-    console.log("response", response);
   };
   return (
     <div className="name">
