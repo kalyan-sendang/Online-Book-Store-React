@@ -37,7 +37,10 @@ const LoginUser = () => {
 
   const formikSubmit = async (value, action) => {
     try {
-      const { status, data } = await axiosInstance.post("/user/login", value);
+      const { status, data } = await axiosInstance.post(
+        "/auth/user/login",
+        value
+      );
       const token = data?.token;
       // Save the token in local storage
       // localStorage.setItem("token", "Bearer " + token);

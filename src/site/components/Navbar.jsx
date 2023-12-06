@@ -78,16 +78,44 @@ function Navbar() {
                     <i className="fa-solid fa-user"></i>
                     {userProfile.userName}
                   </a>
-                  <ul
-                    className="dropdown-menu"
-                    aria-labelledby="navbarDropdown"
-                  >
-                    <li>
-                      <Link className="dropdown-item" onClick={logoutHandler}>
-                        logout
-                      </Link>
-                    </li>
-                  </ul>
+                  {userProfile?.role === "ADMIN" ? (
+                    <ul
+                      className="dropdown-menu"
+                      aria-labelledby="navbarDropdown"
+                    >
+                      <li>
+                        <Link to="/profile" className="dropdown-item">
+                          Profile
+                        </Link>
+                      </li>
+                      <li>
+                        <Link to="/admin" className="dropdown-item">
+                          Admin Dashboard
+                        </Link>
+                      </li>
+                      <li>
+                        <Link className="dropdown-item" onClick={logoutHandler}>
+                          logout
+                        </Link>
+                      </li>
+                    </ul>
+                  ) : (
+                    <ul
+                      className="dropdown-menu"
+                      aria-labelledby="navbarDropdown"
+                    >
+                      <li>
+                        <Link to="/profile" className="dropdown-item">
+                          Profile
+                        </Link>
+                      </li>
+                      <li>
+                        <Link className="dropdown-item" onClick={logoutHandler}>
+                          logout
+                        </Link>
+                      </li>
+                    </ul>
+                  )}
                 </li>
               ) : (
                 <li className="nav-item active">

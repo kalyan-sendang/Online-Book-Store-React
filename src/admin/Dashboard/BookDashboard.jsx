@@ -124,7 +124,7 @@ const BookDashboard = () => {
 
   const handleDelete = async (bookId) => {
     const response = await axiosInstance
-      .delete(`/auth/book/${bookId}`)
+      .delete(`/admin/book/${bookId}`)
       .then((res) => res?.data)
       .catch(() => null);
     if (response?.success) {

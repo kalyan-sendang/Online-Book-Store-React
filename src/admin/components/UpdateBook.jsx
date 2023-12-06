@@ -33,7 +33,7 @@ const UpdateBook = () => {
 
   const formikSubmit = async (value, action) => {
     const response = await axiosInstance
-      .put(`/auth/book/${id}`, value)
+      .put(`/admin/book/${id}`, value)
       .then(() => {
         navigate("/admin/book");
       })

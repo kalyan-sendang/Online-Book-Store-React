@@ -2,8 +2,6 @@ import { Table } from "reactstrap";
 import { getOrders } from "../../services/Routes";
 import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
-import axios from "axios";
-import axiosInstance from "../../../axiosInstance";
 import OrderStatus from "./OrderStatus";
 
 const OrderDashboard = () => {
@@ -17,13 +15,11 @@ const OrderDashboard = () => {
 
   const [orderData, setOrderData] = useState("");
 
-
   useEffect(() => {
     if (orders) {
       setOrderData(orders);
     }
   }, [orders]);
-
 
   if (isLoading) {
     return <div>Loading...</div>;

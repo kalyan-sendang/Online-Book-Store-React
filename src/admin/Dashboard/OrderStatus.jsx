@@ -7,7 +7,7 @@ function OrderStatus({ order }) {
   //api
   const handleUpdate = async (orderId, status) => {
     console.log(orderId, status);
-    const response = await axiosInstance.put(`/order/${orderId}`, status);
+    const response = await axiosInstance.put(`/admin/order/${orderId}`, status);
     console.log(response);
   };
 
@@ -40,7 +40,7 @@ function OrderStatus({ order }) {
           onClick={() => {
             // setStatus(orderData?.status);
             // handleUpdate(order?.orderId, orderData?.status);
-            handleUpdate(order?.orderId, status)
+            handleUpdate(order?.orderId, status);
           }}
           type="button"
           className="btn btn-success"

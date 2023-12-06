@@ -1,4 +1,3 @@
-import axios from "axios";
 import axiosInstance from "../../axiosInstance";
 import { getCart } from "./getCart";
 
@@ -27,7 +26,7 @@ export const getBooksById = async (bookId) => {
   return axiosInstance.get(`/book/${bookId}`);
 };
 export const getUsers = async () => {
-  return axiosInstance.get("/auth/user");
+  return axiosInstance.get("/admin/user");
 };
 
 export const addToCart = async (bookId) => {
@@ -68,6 +67,11 @@ export const deleteCart = async (cartId) => {
 }
 
 export const getOrders = async () =>{
-  const response = await axiosInstance.get("/order");
+  const response = await axiosInstance.get("/admin/orders");
   return response; 
+}
+
+export const getOrdersById = async () =>{
+  const response = await axiosInstance.get("/order");
+  return response;
 }

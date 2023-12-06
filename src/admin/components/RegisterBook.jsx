@@ -23,7 +23,7 @@ const RegisterBook = () => {
 
   const formikSubmit = async (value, action) => {
     await axiosInstance
-      .post("/auth/book", value)
+      .post("/admin/book", value)
       .then(() => navigate("/admin/book"))
       .catch((err) => err);
   };

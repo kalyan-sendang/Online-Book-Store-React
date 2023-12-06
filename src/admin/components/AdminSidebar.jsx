@@ -1,6 +1,10 @@
 import { Link } from "react-router-dom";
 
 const AdminSidebar = () => {
+  const logoutHandler = () => {
+    localStorage.removeItem("userprofile");
+    localStorage.removeItem("cart");
+  };
   return (
     <div
       className="flex-shrink-0 p-3 text-white bg-dark"
@@ -118,7 +122,11 @@ const AdminSidebar = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/" className="link-light rounded">
+                <Link
+                  to="/"
+                  className="link-light rounded"
+                  onClick={logoutHandler}
+                >
                   Sign out
                 </Link>
               </li>
