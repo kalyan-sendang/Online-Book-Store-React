@@ -8,10 +8,13 @@ const HomePage = () => {
   const [books, setBooks] = useState([]);
   const [queryParams, setQueryParams] = useSearchParams();
   const [totalPage, setTotalpage] = useState(1);
+  const [searchQuery, setSearchQuery] = useState("");
 
-  const fetchBooks = async (page) => {
+  const fetchBooks = async (query, page) => {
     try {
-      const response = await axiosInstance.get(`/book?pageNo=${page}`);
+      const response = await axiosInstance.get(
+        `/book?query=${query}&pageNo=${page}`
+      );
 
       const data = response?.data;
 
@@ -26,11 +29,14 @@ const HomePage = () => {
     }
   };
   useEffect(() => {
-    fetchBooks(queryParams.get("page") || 1);
+    const query = queryParams.get("query") ?? "";
+    const page = parseInt(queryParams.get("page") ?? 1);
+    setSearchQuery(query);
+    fetchBooks(query, page);
   }, [queryParams]);
 
   const handlePageChange = (pageNum) => {
-    setQueryParams({ page: pageNum });
+    setQueryParams({ query: searchQuery, page: pageNum });
   };
 
   const handlePrevClick = () => {

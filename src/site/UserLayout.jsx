@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Toastify from "./components/toastify/Toastify";
 
-const SiteLayout = () => {
+const UserLayout = () => {
   return (
     <div>
       <Toastify />
@@ -12,4 +12,4 @@ const SiteLayout = () => {
   );
 };
 
-export default SiteLayout;
+export default UserLayout;

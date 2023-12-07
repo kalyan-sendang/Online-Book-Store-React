@@ -33,7 +33,7 @@ const UpdateUser = () => {
   const formikSubmit = async (value, action) => {
     const response = await axiosInstance
       .put(`/user/${id}`, value)
-      .then(() => navigate("/admin/user"))
+      .then(() => navigate("/userprofile"))
       .catch((err) => err);
   };
   return (

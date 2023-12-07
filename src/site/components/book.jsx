@@ -3,6 +3,7 @@ import { Button, Card, Col, ListGroup, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { addToCart } from "../../services/Routes";
 import Rating from "../Review/Rating";
+import { emitInfoToast, emitSuccessToast } from "./toastify/toastEmitter";
 
 function Book({ book }) {
   const userProfile = localStorage.getItem("userprofile");
@@ -10,12 +11,12 @@ function Book({ book }) {
     if (userProfile) {
       const response = await addToCart(book.bookId);
       if (response?.success === true) {
-        window.alert("Successfully book added to Cart.");
+        emitSuccessToast(response?.message);
       } else {
-        window.alert("Book is already added to Cart.");
+        emitInfoToast(response?.message);
       }
     } else {
-      window.alert("Sign in to add Book");
+      emitInfoToast("Sign in to add Book");
     }
   };
 

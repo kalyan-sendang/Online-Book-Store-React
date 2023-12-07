@@ -1,7 +1,14 @@
+import { Button } from "react-bootstrap";
 import OrderPage from "../cart/OrderPage";
+import { useNavigate } from "react-router-dom";
 
 function ProfilePage() {
-  const profile = JSON.parse(localStorage.getItem("userprofile"));
+  const navigate = useNavigate();
+  const profile = JSON.parse(localStorage.getItem("userprofile")) || [];
+  const profileHandler = () => {
+    navigate("/register");
+  };
+
   return (
     <div>
       <section className="bg-light" />
@@ -56,6 +63,9 @@ function ProfilePage() {
                           <option>active</option>
                           <option>Inactive</option>
                         </select>
+                      </li>
+                      <li className="mt-3">
+                        <Button onClick={profileHandler}>Edit Profile</Button>
                       </li>
                     </ul>
                   </div>

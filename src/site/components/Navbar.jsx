@@ -1,14 +1,25 @@
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 function Navbar() {
   const navigate = useNavigate();
   const userProfile = JSON.parse(localStorage.getItem("userprofile"));
+  const cart = JSON.parse(localStorage.getItem("cart"));
+  console.log(cart);
+
+  const [search, setSearch] = useState("");
   const logoutHandler = () => {
     localStorage.removeItem("userprofile");
     localStorage.removeItem("cart");
     navigate("/");
   };
 
+  const handleSearch = () => {
+    if (search?.length > 0) {
+      setSearch("");
+      navigate(`?query=${search}&page=1`);
+    }
+  };
   return (
     <div className="container">
       <nav className="navbar navbar-expand-lg">
@@ -24,14 +35,17 @@ function Navbar() {
           <ul className="navbar-nav mr-auto">
             {userProfile && (
               <li className="nav-item active">
-                <a className="nav-link" href="/cart" style={{ width: "70px" }}>
-                  <i className="fa-solid fa-cart-shopping"> </i>
+                <Link
+                  to="/cart"
+                  className="nav-link"
+                  style={{ width: "80px", height: "100%" }}
+                >
+                  <i className="fa-solid fa-cart-shopping fa-lg"> </i>
                   Cart
-                  <span className="sr-only">Cart</span>
-                </a>
+                </Link>
               </li>
             )}
-            <li className="nav-item dropdown">
+            {/* <li className="nav-item dropdown">
               <a
                 className="nav-link dropdown-toggle"
                 href="#"
@@ -54,7 +68,7 @@ function Navbar() {
                   </a>
                 </li>
               </ul>
-            </li>
+            </li> */}
           </ul>
 
           <div className="container" style={{ display: "flex" }}>
@@ -135,6 +149,8 @@ function Navbar() {
                 type="search"
                 placeholder="Search"
                 aria-label="Search"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
                 style={{
                   width: "200px",
                   height: "50px",
@@ -146,7 +162,8 @@ function Navbar() {
                   marginBottom: "16px",
                   borderRadius: "0.375rem",
                 }}
-                type="submit"
+                type="button"
+                onClick={handleSearch}
               >
                 Search
               </button>

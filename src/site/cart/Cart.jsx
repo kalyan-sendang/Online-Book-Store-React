@@ -3,6 +3,10 @@ import { Link, useNavigate } from "react-router-dom";
 import SingleCart from "./SingleCart";
 import { useEffect, useState } from "react";
 import { deleteCart, updateCart } from "../../services/Routes";
+import {
+  emitErrorToast,
+  emitSuccessToast,
+} from "../components/toastify/toastEmitter";
 
 function Cart() {
   const navigate = useNavigate();
@@ -14,7 +18,7 @@ function Cart() {
   const [totalQuantity, setTotalQuantity] = useState(0);
 
   const checkoutHandler = () => {
-    navigate("/shipping");
+    navigate("/cart/shipping");
   };
 
   const updateHandler = async (cartId, quantity) => {
@@ -27,9 +31,9 @@ function Cart() {
         return item;
       });
       setCartItems(updatedItems);
-      window.alert("Cart Updated");
+      emitSuccessToast(response?.message);
     } else {
-      window.alert("Error updating cart");
+      emitErrorToast(response?.message);
     }
   };
 
@@ -39,9 +43,9 @@ function Cart() {
     if (response?.success) {
       const carts = cartItems?.filter((item) => item?.cartId !== cartId);
       setCartItems(carts);
-      window.alert("Book Deleted");
+      emitSuccessToast(response?.message);
     } else {
-      window.alerts("error");
+      emitErrorToast(response?.message);
     }
   };
   useEffect(() => {

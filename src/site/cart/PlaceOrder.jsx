@@ -2,6 +2,10 @@ import { Button, Card, Col, Image, ListGroup, Row } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import CheckoutSteps from "../components/CheckoutStep.jsx";
 import axiosInstance from "../../../axiosInstance.js";
+import {
+  emitInfoToast,
+  emitSuccessToast,
+} from "../components/toastify/toastEmitter.js";
 
 function PlaceOrder() {
   const navigate = useNavigate();
@@ -28,8 +32,9 @@ function PlaceOrder() {
     if (response?.data?.success) {
       localStorage.removeItem("cart");
       navigate("/");
+      emitSuccessToast(response?.data?.message);
     } else {
-      window.alert("No order to place!!!");
+      emitInfoToast("No order to place!!!");
     }
   };
   return (

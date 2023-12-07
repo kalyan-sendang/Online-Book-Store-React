@@ -6,6 +6,7 @@ import { Spinner } from "reactstrap";
 import Rating from "../Review/Rating";
 import { useEffect, useState } from "react";
 import ReviewList from "../Review/ReviewList";
+import { emitInfoToast, emitSuccessToast } from "./toastify/toastEmitter";
 
 const BookPage = () => {
   const [reviews, setReviews] = useState("");
@@ -26,12 +27,12 @@ const BookPage = () => {
       const response = await addToCart(book?.bookId);
 
       if (response?.success === true) {
-        window.alert("Successfully book added to Cart.");
+        emitSuccessToast(response?.message);
       } else {
-        window.alert("Book is already added to Cart.");
+        emitInfoToast(response?.message);
       }
     } else {
-      window.alert("Sign in to add Book");
+      emitInfoToast("Login to add book to cart!");
     }
   };
 

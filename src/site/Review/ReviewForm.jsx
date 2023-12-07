@@ -1,6 +1,10 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
 import axiosInstance from "../../../axiosInstance";
+import {
+  emitErrorToast,
+  emitSuccessToast,
+} from "../components/toastify/toastEmitter";
 
 const ReviewForm = ({ bookId, prevReview, setReviews, setEditModel }) => {
   const [rating, setRating] = useState(0);
@@ -16,11 +20,11 @@ const ReviewForm = ({ bookId, prevReview, setReviews, setEditModel }) => {
     const response = JSON.parse(JSON.stringify(res));
 
     if (response?.data?.success) {
-      window.alert("Added!!!");
+      emitSuccessToast("Rating is added!!!");
       setReviews(response?.data?.response);
       setEditModel && setEditModel(false);
     } else {
-      window.alert("Error");
+      emitErrorToast("Error Error");
     }
   };
 

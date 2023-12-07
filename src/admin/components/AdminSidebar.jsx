@@ -117,7 +117,7 @@ const AdminSidebar = () => {
           >
             <ul className="btn-toggle-nav list-unstyled fw-normal pb-1 small">
               <li>
-                <Link to="#" className="link-light rounded">
+                <Link to="/admin/profile" className="link-light rounded">
                   Profile
                 </Link>
               </li>

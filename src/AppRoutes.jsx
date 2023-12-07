@@ -6,7 +6,7 @@ import BookDashboard from "./admin/Dashboard/BookDashboard";
 import Login from "./site/Login";
 import PageNotFound from "./site/404Page/404Page";
 import RegisterUser from "./site/Register";
-import Protected from "./Protected";
+import Protected from "./site/utils/Protected";
 import WelcomeDashBoard from "./admin/Dashboard/WelcomeDashBoard";
 import RegisterBook from "./admin/components/RegisterBook";
 import UserDashboard from "./admin/Dashboard/UserDashboard";
@@ -19,6 +19,8 @@ import OrderDashboard from "./admin/Dashboard/OrderDashboard";
 import { ShippingPage } from "./site/cart/ShippingPage";
 import PlaceOrder from "./site/cart/PlaceOrder";
 import ProfilePage from "./site/profile/ProfilePage";
+import AdminCheck from "./site/utils/AdminCheck";
+import UserLayout from "./site/UserLayout";
 
 const AppRoutes = () => {
   return (
@@ -29,17 +31,14 @@ const AppRoutes = () => {
           <Route path="book/:id" element={<BookPage />} />
           <Route path="login" element={<Login />} />
           <Route path="register" element={<RegisterUser />} />
-          <Route path="cart" element={<Cart />} />
-          <Route path="shipping" element={<ShippingPage />} />
-          <Route path="placeorder" element={<PlaceOrder />} />
           <Route path="profile" element={<ProfilePage />} />
         </Route>
         <Route
           path="/admin"
           element={
-            <Protected>
+            <AdminCheck>
               <AdminLayout />
-            </Protected>
+            </AdminCheck>
           }
         >
           <Route index element={<WelcomeDashBoard />} />
@@ -48,8 +47,22 @@ const AppRoutes = () => {
           <Route path="updatebook/:id" element={<UpdateBook />}></Route>
           <Route path="user" element={<UserDashboard />}></Route>
           <Route path="updateuser/:id" element={<UpdateUser />}></Route>
+          <Route path="profile" element={<ProfilePage />} />
           <Route path="adduser" element={<Register />}></Route>
           <Route path="orders" element={<OrderDashboard />}></Route>
+        </Route>
+        <Route
+          path="/cart"
+          element={
+            <Protected>
+              <UserLayout />
+            </Protected>
+          }
+        >
+          <Route index element={<Cart />} />
+          <Route path="shipping" element={<ShippingPage />} />
+          <Route path="placeorder" element={<PlaceOrder />} />
+          <Route path="profile" element={<ProfilePage />} />
         </Route>
         <Route path="*" element={<PageNotFound />} />
       </Routes>
