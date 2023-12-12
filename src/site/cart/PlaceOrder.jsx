@@ -28,11 +28,11 @@ function PlaceOrder() {
         shippingAddress?.state +
         shippingAddress?.country
     );
-
     if (response?.data?.success) {
       localStorage.removeItem("cart");
-      navigate("/");
+
       emitSuccessToast(response?.data?.message);
+      navigate("/");
     } else {
       emitInfoToast("No order to place!!!");
     }

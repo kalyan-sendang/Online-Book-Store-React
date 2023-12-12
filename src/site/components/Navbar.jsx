@@ -5,7 +5,6 @@ function Navbar() {
   const navigate = useNavigate();
   const userProfile = JSON.parse(localStorage.getItem("userprofile"));
   const cart = JSON.parse(localStorage.getItem("cart"));
-  console.log(cart);
 
   const [search, setSearch] = useState("");
   const logoutHandler = () => {

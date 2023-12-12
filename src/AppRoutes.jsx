@@ -21,6 +21,7 @@ import PlaceOrder from "./site/cart/PlaceOrder";
 import ProfilePage from "./site/profile/ProfilePage";
 import AdminCheck from "./site/utils/AdminCheck";
 import UserLayout from "./site/UserLayout";
+import Public from "./site/utils/Public";
 
 const AppRoutes = () => {
   return (
@@ -28,10 +29,32 @@ const AppRoutes = () => {
       <Routes>
         <Route path="/" element={<SiteLayout />}>
           <Route index element={<HomePage />} />
+          <Route
+            path="/profile"
+            element={
+              <Protected>
+                <ProfilePage />
+              </Protected>
+            }
+          ></Route>
+          <Route
+            path="login"
+            element={
+              <Public>
+                <Login />
+              </Public>
+            }
+          />
+          <Route
+            path="register"
+            element={
+              <Public>
+                <RegisterUser />
+              </Public>
+            }
+          />
+
           <Route path="book/:id" element={<BookPage />} />
-          <Route path="login" element={<Login />} />
-          <Route path="register" element={<RegisterUser />} />
-          <Route path="profile" element={<ProfilePage />} />
         </Route>
         <Route
           path="/admin"
@@ -62,8 +85,8 @@ const AppRoutes = () => {
           <Route index element={<Cart />} />
           <Route path="shipping" element={<ShippingPage />} />
           <Route path="placeorder" element={<PlaceOrder />} />
-          <Route path="profile" element={<ProfilePage />} />
         </Route>
+        <Route></Route>
         <Route path="*" element={<PageNotFound />} />
       </Routes>
     </BrowserRouter>
